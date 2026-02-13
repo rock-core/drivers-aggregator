@@ -4,8 +4,8 @@
 
 #include <iostream>
 #include <numeric>
+#include <functional>
 
-#include <boost/bind.hpp>
 #include <boost/test/unit_test.hpp>
 #include <boost/test/execution_monitor.hpp>  
 
@@ -426,8 +426,8 @@ BOOST_AUTO_TEST_CASE( pull_stream_test )
     pull_object<string> p2;
 
     // callback, buffer_size, period_time, (optional) priority
-    reader.registerStream<string>( boost::bind( &pull_object<string>::getNext, &p1, _1, _2 ), &test_callback, 4, base::Time::fromSeconds(2) ); 
-    reader.registerStream<string>( boost::bind( &pull_object<string>::getNext, &p2, _1, _2 ), &test_callback, 4, base::Time::fromSeconds(2), 1 );
+    reader.registerStream<string>( bind( &pull_object<string>::getNext, &p1, placeholders::_1, placeholders::_2 ), &test_callback, 4, base::Time::fromSeconds(2) ); 
+    reader.registerStream<string>( bind( &pull_object<string>::getNext, &p2, placeholders::_1, placeholders::_2 ), &test_callback, 4, base::Time::fromSeconds(2), 1 );
 
     lastSample = ""; reader.step(); BOOST_CHECK_EQUAL( lastSample, "" );
 
