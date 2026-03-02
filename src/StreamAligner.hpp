@@ -5,7 +5,7 @@
 #include <cmath>
 #include <base-logging/Logging.hpp>
 #include <vector>
-#include <base/CircularBuffer.hpp>
+#include <boost/circular_buffer.hpp>
 #include <algorithm>
 #include <boost/function.hpp>
 #include <boost/tuple/tuple.hpp>
